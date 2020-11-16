@@ -2,6 +2,6 @@
 @section('title', 'Home | Parsinta')
 @section('content')
     <div class="container">
-        Home
+        My name is {!! $name !!}
     </div>
 @endsection
