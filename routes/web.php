@@ -3,10 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $name = "<i>Alica Putri A</i>";
-    $postBody = "Lorem ipsum dolor sir amet dimana ada makanan disitu adalah saya";
-    return view('welcome', ['name' => $name, 'body' => $postBody]);
+    return view('home');
 });
+
 Route::view('contact', 'contact');
-Route::view('series/create', 'series.create');
-Route::view('series/premium', 'series.premium.index');
+Route::view('about', 'about');
+Route::view('login', 'login');
