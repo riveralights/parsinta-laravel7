@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title', 'Login | Parsinta')
 @section('content')
-    Login
+    <div class="container">
+        Login
+    </div>
 @endsection
