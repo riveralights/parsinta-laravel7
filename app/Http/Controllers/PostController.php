@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
+    public function index()
+    {
+        $posts = Post::latest()->paginate(5);
+        return view('post.index', compact('posts'));
+    }
+
     public function show(Post $post)
     {
         return view('post.show', compact('post'));
