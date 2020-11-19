@@ -13,15 +13,14 @@
           <a class="nav-link" href="/contact">Contact</a>
         </li>
         <li class="nav-item{{ request()->is('about') ? ' active' : '' }}">
-            <a class="nav-link" href="/about">About</a>
-          </li>
-          <li class="nav-item{{ request()->is('login') ? ' active' : '' }}">
-            <a class="nav-link" href="/login">Login</a>
-          </li>
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item{{ request()->is('post') ? ' active' : '' }}">
+          <a class="nav-link" href="/post">Post</a>
+        </li>
+        <li class="nav-item{{ request()->is('login') ? ' active' : '' }}">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
     </div>
   </nav>
