@@ -11,11 +11,21 @@
                         @csrf
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" name="title" id="title" class="form-control">
+                            <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror">
+                            @error('title')
+                                <div class="mt-2 text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="body">Body</label>
-                            <textarea name="body" id="body" class="form-control"></textarea>
+                            <textarea name="body" id="body" class="form-control @error('body') is-invalid @enderror"></textarea>
+                            @error('body')
+                                <div class="mt-2 text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">Create</button>
                     </form>
