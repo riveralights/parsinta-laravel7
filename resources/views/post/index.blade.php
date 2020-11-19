@@ -10,7 +10,6 @@
             <a href="{{ route('post.create') }}" class="btn btn-primary">New Post</a>
         </div>
     </div>
-
     <div class="row">
         @forelse ($posts as $post)
         <div class="col-md-4">

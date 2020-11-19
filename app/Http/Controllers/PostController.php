@@ -38,6 +38,6 @@ class PostController extends Controller
         Post::create($attr);
 
         // redirect to index
-        return redirect()->route('post.index');
+        return redirect()->route('post.index')->with('success', 'The post was created');
     }
 }
