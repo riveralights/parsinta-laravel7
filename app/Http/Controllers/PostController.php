@@ -40,4 +40,21 @@ class PostController extends Controller
         // redirect to index
         return redirect()->route('post.index')->with('success', 'The post was created');
     }
+
+    public function edit(Post $post)
+    {
+        return view('post.edit', compact('post'));
+    }
+
+    public function update(Post $post)
+    {
+        $attr = request()->validate([
+            'title' => 'required|min:3',
+            'body' => 'required'
+        ]);
+
+        $post->update($attr);
+
+        return redirect()->route('post.index')->with('success', 'The post was updated');
+    }
 }
