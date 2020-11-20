@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Post;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -21,16 +22,15 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('post.create');
+        return view('post.create', [
+            'post' => new Post,
+            'label' => 'Create',
+        ]);
     }
 
-    public function store()
+    public function store(PostRequest $request)
     {
-        //  validate the field
-        $attr = request()->validate([
-            'title' => 'required|min:3',
-            'body' => 'required',
-        ]);
+        $attr = $request->all();
         // Assign title to the slug
         $attr['slug'] = Str::slug(request('title'));
 
@@ -43,15 +43,15 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('post.edit', compact('post'));
+        return view('post.edit', [
+            'post' => $post,
+            'label' => 'Update'
+        ]);
     }
 
-    public function update(Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        $attr = request()->validate([
-            'title' => 'required|min:3',
-            'body' => 'required'
-        ]);
+        $attr = $request->all();
 
         $post->update($attr);
 
