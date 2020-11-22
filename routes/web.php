@@ -12,9 +12,9 @@ Route::post('post/create', 'PostController@store')->name('post.store');
 Route::get('post/{post:slug}/edit', 'PostController@edit')->name('post.edit');
 Route::patch('post/{post:slug}/edit', 'PostController@update')->name('post.update');
 
-
 Route::get('post/{post:slug}', 'PostController@show')->name('post.show');
 
+Route::delete('post/{post:slug}/delete', 'PostController@destroy')->name('post.destroy');
 
 Route::view('contact', 'contact');
 Route::view('about', 'about');
