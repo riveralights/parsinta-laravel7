@@ -18,6 +18,8 @@ Route::delete('post/{post:slug}/delete', 'PostController@destroy')->name('post.d
 
 Route::get('categories/{category:slug}', 'CategoryController@show');
 
+Route::get('tags/{tag:slug}', 'TagController@show');
+
 Route::view('contact', 'contact');
 Route::view('about', 'about');
 Route::view('login', 'login');
