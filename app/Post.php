@@ -13,4 +13,10 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    // satu postingan punya banyak tag, satu tag punya banyak postingan
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }
