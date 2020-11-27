@@ -1,23 +1,20 @@
-@extends('layouts.app')
-@section('content')
+@extends('layouts.app') @section('content')
 <div class="container">
     <div class="d-flex justify-content-between">
         <div>
             @isset ($category)
-                <h4>Category : {{ $category->name }}</h4>
-            @endisset
-            
-            @isset ($tag)
-                <h4>Tag : {{ $tag->name }}</h4>
-            @endisset
-
-            @if (!isset($tag) && !isset($category))
-                <h4>All Post</h4>
+            <h4>Category : {{ $category->name }}</h4>
+            @endisset @isset ($tag)
+            <h4>Tag : {{ $tag->name }}</h4>
+            @endisset @if (!isset($tag) && !isset($category))
+            <h4>All Post</h4>
             @endif
-            <hr>
+            <hr />
         </div>
         <div>
-            <a href="{{ route('post.create') }}" class="btn btn-primary">New Post</a>
+            <a href="{{ route('post.create') }}" class="btn btn-primary"
+                >New Post</a
+            >
         </div>
     </div>
     <div class="row">
@@ -33,15 +30,17 @@
                 </div>
                 <div class="card-footer d-flex justify-content-between">
                     Published on {{ $post->created_at->diffForHumans() }}
-                    <a href="{{ route('post.edit', $post) }}" class="btn btn-success">Edit</a>
+                    <a
+                        href="{{ route('post.edit', $post) }}"
+                        class="btn btn-success"
+                        >Edit</a
+                    >
                 </div>
             </div>
         </div>
         @empty
         <div class="col">
-            <div class="alert alert-info">
-                There's no post.
-            </div>
+            <div class="alert alert-info">There's no post.</div>
         </div>
         @endforelse
     </div>
