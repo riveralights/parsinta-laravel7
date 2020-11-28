@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'HomeController');
-
 Route::get('post', 'PostController@index')->name('post.index');
 
 Route::get('post/create', 'PostController@create')->name('post.create');
@@ -23,3 +21,7 @@ Route::get('tags/{tag:slug}', 'TagController@show');
 Route::view('contact', 'contact');
 Route::view('about', 'about');
 Route::view('login', 'login');
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
