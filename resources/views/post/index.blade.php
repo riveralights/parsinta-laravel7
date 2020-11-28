@@ -12,9 +12,15 @@
             <hr />
         </div>
         <div>
+            @if(Auth::check())
             <a href="{{ route('post.create') }}" class="btn btn-primary"
                 >New Post</a
             >
+            @else
+            <a href="{{ route('post.create') }}" class="btn btn-primary"
+                >Login to create a new post</a
+            >
+            @endif
         </div>
     </div>
     <div class="row">
@@ -30,11 +36,13 @@
                 </div>
                 <div class="card-footer d-flex justify-content-between">
                     Published on {{ $post->created_at->diffForHumans() }}
+                    @auth
                     <a
                         href="{{ route('post.edit', $post) }}"
                         class="btn btn-success"
                         >Edit</a
                     >
+                    @endauth
                 </div>
             </div>
         </div>
