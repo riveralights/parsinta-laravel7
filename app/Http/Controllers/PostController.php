@@ -38,7 +38,7 @@ class PostController extends Controller
         $attr['category_id'] = request('category');
 
         // Create new post
-        $post = Post::create($attr);
+        $post = auth()->user()->posts()->create($attr);
 
         $post->tags()->attach(request('tags'));
 
@@ -69,8 +69,12 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        $post->tags()->detach();
-        $post->delete();
-        return redirect()->route('post.index')->with('success', 'The post was deleted');
+        if (auth()->user()->is($post->author)) {
+            $post->tags()->detach();
+            $post->delete();
+            return redirect()->route('post.index')->with('success', 'The post was deleted');
+        } else {
+            return redirect()->route('post.index')->with('error', "It wasn't your post");
+        }
     }
 }

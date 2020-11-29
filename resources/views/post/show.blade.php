@@ -14,7 +14,10 @@
     <hr />
     <p>{{ $post->body }}</p>
     <div>
-        @auth
+        <div class="text-secondary mb-3">
+            Penulis : {{ $post->author->name }}
+        </div>
+        {{-- @if(auth()->user()->is($post->author)) --}}
         <!-- Button trigger modal -->
         <button
             type="button"
@@ -76,7 +79,7 @@
                 </div>
             </div>
         </div>
-        @endauth
+        {{-- @endif --}}
     </div>
 </div>
 @endsection
