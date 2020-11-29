@@ -58,6 +58,7 @@ class PostController extends Controller
 
     public function update(PostRequest $request, Post $post)
     {
+        $this->authorize('update', $post);
         $attr = $request->all();
         $attr['category_id'] = request('category');
 
@@ -69,12 +70,9 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        if (auth()->user()->is($post->author)) {
-            $post->tags()->detach();
-            $post->delete();
-            return redirect()->route('post.index')->with('success', 'The post was deleted');
-        } else {
-            return redirect()->route('post.index')->with('error', "It wasn't your post");
-        }
+        $this->authorize('delete', $post);
+        $post->tags()->detach();
+        $post->delete();
+        return redirect()->route('post.index')->with('success', 'The post was deleted');
     }
 }

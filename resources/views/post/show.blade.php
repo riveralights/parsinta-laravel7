@@ -17,7 +17,7 @@
         <div class="text-secondary mb-3">
             Penulis : {{ $post->author->name }}
         </div>
-        {{-- @if(auth()->user()->is($post->author)) --}}
+        @can('delete', $post)
         <!-- Button trigger modal -->
         <button
             type="button"
@@ -79,7 +79,7 @@
                 </div>
             </div>
         </div>
-        {{-- @endif --}}
+        @endcan
     </div>
 </div>
 @endsection
