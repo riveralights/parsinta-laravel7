@@ -14,6 +14,7 @@
     <hr />
     <p>{{ $post->body }}</p>
     <div>
+        @auth
         <!-- Button trigger modal -->
         <button
             type="button"
@@ -75,6 +76,7 @@
                 </div>
             </div>
         </div>
+        @endauth
     </div>
 </div>
 @endsection
