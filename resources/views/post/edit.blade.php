@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">Update Post : {{ $post->title }}</div>
                 <div class="card-body">
-                    <form action="{{ route('post.update', $post) }}" method="post">
+                    <form action="{{ route('post.update', $post) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('patch')
                         @include('post.partials.form-control')

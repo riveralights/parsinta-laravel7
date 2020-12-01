@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">New Post</div>
                 <div class="card-body">
-                    <form action="{{ route('post.store') }}" method="post">
+                    <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @include('post.partials.form-control')
                         <button type="submit" class="btn btn-primary">{{ $label }}</button>

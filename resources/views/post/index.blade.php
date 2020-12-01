@@ -28,6 +28,10 @@
         <div class="col-md-4">
             <div class="card mb-3">
                 <div class="card-header">{{ $post->title }}</div>
+                @if ($post->thumbnail)
+                    <img style="height: 270px; object-fit: cover; object-position:center; " src="{{ asset($post->takeImage) }}" alt="" class="card-img-top">
+                @endif
+
                 <div class="card-body">
                     <div>
                         {{ Str::limit($post->body, 100, '.') }}

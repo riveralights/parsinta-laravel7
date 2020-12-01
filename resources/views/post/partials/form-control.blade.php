@@ -1,4 +1,12 @@
 <div class="form-group">
+    <input type="file" name="thumbnail" id="thumbnail" class="form-control-file">
+    @error('thumbnail')
+        <div class="text-danger mt-2">
+            {{ $message }}
+        </div>
+    @enderror
+</div>
+<div class="form-group">
     <label for="title">Title</label>
     <input
         type="text"
