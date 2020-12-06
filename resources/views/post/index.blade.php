@@ -1,6 +1,6 @@
 @extends('layouts.app') @section('content')
 <div class="container">
-    <div class="d-flex justify-content-between">
+    <div class="">
         <div>
             @isset ($category)
             <h4>Category : {{ $category->name }}</h4>
@@ -11,55 +11,55 @@
             @endif
             <hr />
         </div>
-        <div>
-            @if(Auth::check())
-            <a href="{{ route('post.create') }}" class="btn btn-primary"
-                >New Post</a
-            >
-            @else
-            <a href="{{ route('post.create') }}" class="btn btn-primary"
-                >Login to create a new post</a
-            >
-            @endif
-        </div>
     </div>
     <div class="row">
-        @forelse ($posts as $post)
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <div class="card-header">{{ $post->title }}</div>
-                @if ($post->thumbnail)
-                    <img style="height: 270px; object-fit: cover; object-position:center; " src="{{ asset($post->takeImage) }}" alt="" class="card-img-top">
-                @endif
+        <div class="col-md-6">
+            @forelse ($posts as $post)
+                <div class="card mb-3">
+                    <a href="{{ route('post.show', $post) }}" class="card-header">{{ $post->title }}</a>
+                    @if ($post->thumbnail)
+                    <a href="{{ route('post.show', $post) }}">
+                        <img style="height: 400px; object-fit: cover; object-position:center; " src="{{ asset($post->takeImage) }}" alt="" class="card-img-top">
+                    </a>
+                    @endif
 
-                <div class="card-body">
-                    <div>
-                        {{ Str::limit($post->body, 100, '.') }}
+                    <div class="card-body">
+                        <div>
+                            <a href="{{ route('categories.show', $post->category->slug) }}" class="text-secondary mb-2  ">
+                                <small>{{ $post->category->name }} - </small>
+                            </a>
+                            @foreach ($post->tags as $tag)
+                                <a href="{{ route('tags.show', $tag->slug) }}" class="text-secondary">
+                                    <small>{{ $tag->name }}</small>
+                                </a>   
+                            @endforeach
+                        </div>
+                        <div class="mt-3">
+                            {{ Str::limit($post->body, 130, '.') }}
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <div class="media align-items-center">
+                                <img width="40" src="{{ $post->author->gravatar() }}" class="rounded-circle mr-3">
+                                <div class="media-body">
+                                    <div>
+                                        {{ $post->author->name }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-secondary">
+                                <small>Published on {{ $post->created_at->diffForHumans() }}</small>
+                            </div>
+                        </div>
                     </div>
-                    <a href="{{ route('post.show', $post) }}">Read More</a>
                 </div>
-                <div class="card-footer d-flex justify-content-between">
-                    Published on {{ $post->created_at->diffForHumans() }}
-                    @can("update", $post)
-                    <a
-                        href="{{ route('post.edit', $post) }}"
-                        class="btn btn-success"
-                        >Edit</a
-                    >
-                    @endcan
-                </div>
+            @empty
+            <div class="col">
+                <div class="alert alert-info">There's no post.</div>
             </div>
-        </div>
-        @empty
-        <div class="col">
-            <div class="alert alert-info">There's no post.</div>
-        </div>
-        @endforelse
-    </div>
-    <div class="d-flex justify-content-center">
-        <div>
-            {{ $posts->links() }}
+            @endforelse
         </div>
     </div>
+    
+    {{ $posts->links() }}
 </div>
 @endsection

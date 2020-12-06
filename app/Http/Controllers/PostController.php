@@ -18,7 +18,8 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('post.show', compact('post'));
+        $posts = Post::where('category_id', $post->category_id)->latest()->limit(6)->get();
+        return view('post.show', compact('post', 'posts'));
     }
 
     public function create()
@@ -97,7 +98,7 @@ class PostController extends Controller
         }
 
         // tangkap gambarnya dan simpan
-        $thumbnail = request()->file('thumbnail')->store("images/post");
+        // $thumbnail = request()->file('thumbnail')->store("images/post");
 
         $attr = $request->all();
         $attr['category_id'] = request('category');
